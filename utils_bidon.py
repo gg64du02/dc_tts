@@ -6,16 +6,32 @@ https://www.github.com/kyubyong/dc_tts
 '''
 from __future__ import print_function, division
 
+k = 0
+k=+1
+print("start loading utils_bidon1",k)
 import numpy as np
+k=+1
+print("start loading utils_bidon2",k)
 import librosa
+k=+1
+print("start loading utils_bidon",k)
 import os, copy
+k=+1
+print("start loading utils_bidon",k)
 import matplotlib
+k=+1
+print("start loading utils_bidon",k)
 matplotlib.use('pdf')
+k=+1
+print("start loading utils_bidon",k)
 import matplotlib.pyplot as plt
+k=+1
+print("start loading utils_bidon",k)
 from scipy import signal
 
 from hyperparams import Hyperparams as hp
 import tensorflow as tf
+
 
 def get_spectrograms(fpath):
     '''Parse the wave file in `fpath` and
@@ -147,17 +163,29 @@ def learning_rate_decay(init_lr, global_step, warmup_steps = 4000.0):
 def load_spectrograms(fpath):
     '''Read the wave file in `fpath`
     and extracts spectrograms'''
+    # j = 0
+    # j =+1
+    # print("load_spectrograms",j)
 
     fname = os.path.basename(fpath)
     mel, mag = get_spectrograms(fpath)
     t = mel.shape[0]
+
+    # j =+1
+    # print("load_spectrograms",j)
 
     # Marginal padding for reduction shape sync.
     num_paddings = hp.r - (t % hp.r) if t % hp.r != 0 else 0
     mel = np.pad(mel, [[0, num_paddings], [0, 0]], mode="constant")
     mag = np.pad(mag, [[0, num_paddings], [0, 0]], mode="constant")
 
+    # j =+1
+    print("load_spectrograms1")
+
+
     # Reduction
     mel = mel[::hp.r, :]
     return fname, mel, mag
 
+
+print("start loaded utils_bidon")
