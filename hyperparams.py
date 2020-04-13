@@ -7,7 +7,9 @@ https://www.github.com/kyubyong/dc_tts
 class Hyperparams:
     '''Hyper parameters'''
     # pipeline
-    prepro = True  # if True, run `python prepro.py` first before running `python train.py`.
+    # prepro = True  # if True, run `python prepro.py` first before running `python train.py`.
+    prepro = False  # if True, run `python prepro.py` first before running `python train.py`.
+    print("hyperparams class loaded")
     
     # signal processing
     sr = 22050  # Sampling rate.
@@ -31,10 +33,15 @@ class Hyperparams:
     c = 512 # == hidden units of SSRN
     attention_win_size = 3
 
+    that_dir = "D:/bomberman-fabienpg-ai/dc_tts"
+
     # data
-    data = "/data/private/voice/LJSpeech-1.0"
+    # data = "/data/private/voice/LJSpeech-1.0"
+    data = that_dir + "/LJSpeech-1.1/"
+
     # data = "/data/private/voice/kate"
-    test_data = 'harvard_sentences.txt'
+    #test_data = 'harvard_sentences.txt'
+    test_data = that_dir +  '/harvard_sentences_fr.txt'
     vocab = "PE abcdefghijklmnopqrstuvwxyz'.?" # P: Padding, E: EOS.
     max_N = 180 # Maximum number of characters.
     max_T = 210 # Maximum number of mel frames.
@@ -42,6 +49,14 @@ class Hyperparams:
     # training scheme
     lr = 0.001 # Initial learning rate.
     logdir = "logdir/LJ01"
-    sampledir = 'samples'
+    # logdir = that_dir + "/LJ_logdir/fr_logdir/logdir"
+    logdir = that_dir + "/LJ_logdir/LJ01"
+
+    save_path = that_dir + "/synthed/"
+
+    # sampledir = 'samples'
+    sampledir = that_dir + "/samples"
     B = 32 # batch size
     num_iterations = 2000000
+
+print("hyperparams loaded")
