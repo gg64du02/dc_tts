@@ -13,12 +13,14 @@ from hyperparams import Hyperparams as hp
 import numpy as np
 import tensorflow as tf
 from train import Graph
-from utils import *
+# from utils import *
+from utils_bidon import *
 from data_load import load_data
 from scipy.io.wavfile import write
 from tqdm import tqdm
 
 def synthesize():
+    print("lol")
     # Load data
     L = load_data("synthesize")
 
@@ -63,7 +65,9 @@ def synthesize():
             wav = spectrogram2wav(mag)
             write(hp.sampledir + "/{}.wav".format(i+1), hp.sr, wav)
 
+print("lol1")
 if __name__ == '__main__':
+    print("lol2")
     synthesize()
     print("Done")
 

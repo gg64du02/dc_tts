@@ -14,8 +14,11 @@ from hyperparams import Hyperparams as hp
 from modules import *
 from networks import TextEnc, AudioEnc, AudioDec, Attention, SSRN
 import tensorflow as tf
-from utils import *
+# from utils import *
+from utils_bidon import *
 import sys
+
+#os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 
 class Graph:
@@ -25,6 +28,7 @@ class Graph:
           num: Either 1 or 2. 1 for Text2Mel 2 for SSRN.
           mode: Either "train" or "synthesize".
         '''
+        print("Graph constructor")
         # Load vocabulary
         self.char2idx, self.idx2char = load_vocab()
 
@@ -135,10 +139,14 @@ class Graph:
 
 
 if __name__ == '__main__':
+    print("main 1")
     # argument: 1 or 2. 1 for Text2mel, 2 for SSRN.
     num = int(sys.argv[1])
+    print("main 2")
 
     g = Graph(num=num); print("Training Graph loaded")
+
+    print("main 3")
 
     logdir = hp.logdir + "-" + str(num)
     sv = tf.train.Supervisor(logdir=logdir, save_model_secs=0, global_step=g.global_step)

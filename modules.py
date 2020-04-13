@@ -9,6 +9,8 @@ from __future__ import print_function, division
 
 import tensorflow as tf
 
+print("modules start loading")
+
 
 def embed(inputs, vocab_size, num_units, zero_pad=True, scope="embedding", reuse=None):
     '''Embeds a given tensor. 
@@ -247,6 +249,6 @@ def conv1d_transpose(inputs,
     return tensor
 
 
-
+print("modules loaded")
 
 

@@ -10,11 +10,14 @@ from __future__ import print_function
 from hyperparams import Hyperparams as hp
 import numpy as np
 import tensorflow as tf
-from utils import *
+from utils_bidon import *
 import codecs
 import re
 import os
 import unicodedata
+
+
+print("data_load start loading")
 
 def load_vocab():
     char2idx = {char: idx for idx, char in enumerate(hp.vocab)}
@@ -35,6 +38,7 @@ def load_data(mode="train"):
       Args:
           mode: "train" or "synthesize".
     '''
+    print("data_load load_data ")
     # Load vocabulary
     char2idx, idx2char = load_vocab()
 
@@ -42,7 +46,8 @@ def load_data(mode="train"):
         if "LJ" in hp.data:
             # Parse
             fpaths, text_lengths, texts = [], [], []
-            transcript = os.path.join(hp.data, 'transcript.csv')
+            # transcript = os.path.join(hp.data, 'transcript.csv')
+            transcript = os.path.join(hp.data, 'metadata.csv')
             lines = codecs.open(transcript, 'r', 'utf-8').readlines()
             for line in lines:
                 fname, _, text = line.strip().split("|")
@@ -88,6 +93,7 @@ def load_data(mode="train"):
 def get_batch():
     """Loads training data and put them in queues"""
     with tf.device('/cpu:0'):
+    # with tf.device('/gpu:0'):
         # Load data
         fpaths, text_lengths, texts = load_data() # list
         maxlen, minlen = max(text_lengths), min(text_lengths)
@@ -130,3 +136,5 @@ def get_batch():
 
     return texts, mels, mags, fnames, num_batch
 
+
+print("data_load start loaded")
