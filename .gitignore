@@ -1,3 +1,4 @@
-
-LJ_logdir/*
+*pycache*
+LJ_logdir*
 *.wav
+frlogdir*
