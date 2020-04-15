@@ -37,7 +37,8 @@ class Hyperparams:
 
     # data
     # data = "/data/private/voice/LJSpeech-1.0"
-    data = that_dir + "/LJSpeech-1.1/"
+    # data = that_dir + "/LJSpeech-1.1/"
+    data = that_dir + "/french-single-speaker-speech-dataset/"
 
     # data = "/data/private/voice/kate"
     #test_data = 'harvard_sentences.txt'
@@ -48,15 +49,18 @@ class Hyperparams:
 
     # training scheme
     lr = 0.001 # Initial learning rate.
-    logdir = "logdir/LJ01"
+    # logdir = "logdir/LJ01"
     # logdir = that_dir + "/LJ_logdir/fr_logdir/logdir"
-    logdir = that_dir + "/LJ_logdir/LJ01"
+    # logdir = that_dir + "/LJ_logdir/LJ01"
+    # logdir = that_dir + "/frlogdir-1.1/logdir"
+    logdir = that_dir + "/frlogdir-1.1_new/logdir"
 
     save_path = that_dir + "/synthed/"
 
     # sampledir = 'samples'
     sampledir = that_dir + "/samples"
-    B = 32 # batch size
+    # B = 32 # batch size
+    B = 10 # batch size
     num_iterations = 2000000
 
 print("hyperparams loaded")

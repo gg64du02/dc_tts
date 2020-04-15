@@ -180,7 +180,7 @@ def load_spectrograms(fpath):
     mag = np.pad(mag, [[0, num_paddings], [0, 0]], mode="constant")
 
     # j =+1
-    print("load_spectrograms1")
+    # print("load_spectrograms1")
 
 
     # Reduction

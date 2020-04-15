@@ -50,12 +50,15 @@ def load_data(mode="train"):
             transcript = os.path.join(hp.data, 'metadata.csv')
             lines = codecs.open(transcript, 'r', 'utf-8').readlines()
             for line in lines:
+                # print("line",line)
                 fname, _, text = line.strip().split("|")
+                # print("fname, text",fname, text)
 
                 fpath = os.path.join(hp.data, "wavs", fname + ".wav")
                 fpaths.append(fpath)
 
                 text = text_normalize(text) + "E"  # E: EOS
+                # print("char2idx",char2idx)
                 text = [char2idx[char] for char in text]
                 text_lengths.append(len(text))
                 texts.append(np.array(text, np.int32).tostring())
@@ -64,17 +67,29 @@ def load_data(mode="train"):
         else: # nick or kate
             # Parse
             fpaths, text_lengths, texts = [], [], []
-            transcript = os.path.join(hp.data, 'transcript.csv')
+            # transcript = os.path.join(hp.data, 'transcript.csv')
+            transcript = os.path.join(hp.data, 'transcript.txt')
             lines = codecs.open(transcript, 'r', 'utf-8').readlines()
             for line in lines:
-                fname, _, text, is_inside_quotes, duration = line.strip().split("|")
+                # print("line",line)
+                unpackB = line.strip().split("|")
+                # print("unpackB",unpackB)
+                # fname, _, text, is_inside_quotes, duration = line.strip().split("|")
+                # fname, _, text, duration = line.strip().split("|")
+                fname, text, is_inside_quotes, duration = line.strip().split("|")
+                # fname, _, text, duration = line.strip().split("|")
+                # print("fname, text, duration",fname, text, duration)
+                # print("fname, text, is_inside_quotes, duration ",fname, text, is_inside_quotes, duration )
                 duration = float(duration)
                 if duration > 10. : continue
 
                 fpath = os.path.join(hp.data, fname)
                 fpaths.append(fpath)
 
-                text += "E"  # E: EOS
+                # text += "E"  # E: EOS
+                # same as the other one
+                text = text_normalize(text) + "E"  # E: EOS
+                # print("char2idx",char2idx)
                 text = [char2idx[char] for char in text]
                 text_lengths.append(len(text))
                 texts.append(np.array(text, np.int32).tostring())
